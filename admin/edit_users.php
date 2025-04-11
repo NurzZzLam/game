@@ -66,6 +66,10 @@ include "header.php";
         <label for="exampleInputPassword1" class="form-label">Level</label>
         <input type="int" name="level" class="form-control" id="exampleInputPassword1" value="<?= $row['level']; ?>" required>
     </div>
+    <div class="mb-3">
+              <label>Foto</label>
+              <input type="file" name="foto" class="form-control" required>
+            </div>
     <div class="d-flex">    
                             <a href="users.php" class="btn btn-secondary me-3"> Kembali</a>
                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -74,7 +74,7 @@ if (isset($_SESSION['username'])) {
               <input type="file" name="foto" class="form-control" required>
             </div>
             <div class="d-flex">
-              <a href="games.php" class="btn btn-secondary me-3"> Kembali</a>
+              <a href="users.php" class="btn btn-secondary me-3"> Kembali</a>
               <button type="submit" class="btn btn-primary">Submit</button>
             </div>
           </form>
