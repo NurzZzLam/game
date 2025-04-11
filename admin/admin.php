@@ -5,7 +5,7 @@ if (isset($_SESSION['username'])) {
 
   include '../koneksi.php';
 
-  $result = $conn->query("SELECT * FROM game");
+  $result = $conn->query("SELECT * FROM users");
   ?>
 
   <?php
@@ -21,7 +21,7 @@ if (isset($_SESSION['username'])) {
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
         <div
           class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h1 class="h2">Users</h1>
+          <h1 class="h2">Admin</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
             <div class="btn-group me-2">
               <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -37,65 +37,47 @@ if (isset($_SESSION['username'])) {
           </div>
         </div>
 
-        <h2>Daftar Users</h2>
+        <h2>Daftar Admin</h2>
+
+        
+
         <div class="table-responsive small">
           <table class="table table-striped table-sm">
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Games</th>
+                <th scope="col">Username</th>
+                <th scope="col">Passsword</th>
+                <th scope="col">Level</th>
+                <th scope="col">Foto</th>
                 <th scope="col">Aksi</th>
               </tr>
             </thead>
-
-
-
             <tbody>
-
-              <div>
+              <?php $no = 1;
+              while ($row = mysqli_fetch_array($result)) { ?>
                 <tr>
-                  <td>1</td>
-                  <td>Admin</td>
+                  <td><?= $no++ ?></td>
+                  <td><?= $row['username']; ?></td>
+                  <td><?= $row['password']; ?></td>
+                  <td><?= $row['level']; ?></td>
+                  <td><img src="foto/<?= $row['foto']; ?>" width="50" height="50"></td>
                   <td>
-                    <div class="d-grid gap-2 d-md-block">
-                      <a href="admin.php">View</a>
-                    </div>
+                    <a href="edit_admin.php?id=<?= $row['id_user']; ?>">Edit</a> |
+                    <a href="delete_admin.php?id=<?= $row['id_user']; ?>"
+                      Onclick="return confirm('Yakin ingin menghapus?')">Hapus</a>
                   </td>
                 </tr>
-              </div>
-
-              <div>
-                <tr>
-                  <td>2</td>
-                  <td>Developers</td>
-                  <td>
-                    <div class="d-grid gap-2 d-md-block">
-                      <a href="pengembang.php?">View</a>
-                    </div>
-                  </td>
-                </tr>
-              </div>
-
-              <div>
-                <tr>
-                  <td>3</td>
-                  <td>Players</td>
-                  <td>
-                    <div class="d-grid gap-2 d-md-block">
-                      <a href="users.php?id=<?= $row['id_game']; ?>">View</a>
-                    </div>
-                  </td>
-                </tr>
-              </div>
-
-
-
+              <?php } ?>
             </tbody>
-
           </table>
         </div>
+        <div class="btn-toolbar mb-2">
+          <a href="users_choose.php" class="btn btn-secondary me-3"> Kembali</a>
+          <a class="btn btn-primary" href="tambah_admin.php">Tambah</a>
+        </div>
       </main>
-    </div>
+
   </div>
   <script defer src="../assets/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"></script>
